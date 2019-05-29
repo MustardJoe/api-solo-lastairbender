@@ -1,0 +1,9 @@
+
+
+body {
+    background-color: darksalmon;
+    color: rebeccapurple;
+    font-family: monospace;
+    display: flex;
+    justify-content: center;
+}
