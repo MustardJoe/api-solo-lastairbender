@@ -1,5 +1,6 @@
 import Component from './Component.js';
 import Header from './Header.js';
+import AirbenderList from './AirbenderList.js';
 import api from '../services/airbender-api.js';
 
 class App extends Component {
@@ -12,7 +13,17 @@ class App extends Component {
         console.log(headerDOM);
         dom.insertBefore(headerDOM, main);
 
-        api.getCharacters();
+        const airbenderList = new AirbenderList({ characters: [] });
+        main.appendChild(airbenderList.render());
+
+        api.getCharacters()
+            .then(characters => {
+                airbenderList.update({ characters });
+            })
+            .catch(err => {
+                console.log(err);
+                // errorDisplay.update({ error: err.message });
+            });
 
         return dom;
     }
