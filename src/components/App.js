@@ -18,17 +18,35 @@ class App extends Component {
         const airbenderList = new AirbenderList({ characters: [] });
         main.appendChild(airbenderList.render());
 
-        const loading = new Loading({ loading: true });
+        const loading = new Loading({ loading: false });
         main.appendChild(loading.render());
 
-        //uses api method to retreive data and update list
-        api.getCharacters()
-            .then(characters => {
-                airbenderList.update({ characters });
-            })
-            .catch(err => {
-                console.log(err);
-            });
+        function loadCharacters() {
+            const params = window.location.hash.slice(1);
+
+            const searchParams = new URLSearchParams(params);
+            const search = searchParams.get('search');
+
+            loading.update({ loading: true }); 
+            //uses api method to retreive data and update list
+            api.getCharacters(search)
+                .then(characters => {
+                    airbenderList.update({ characters });
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+                .finally(() => {
+                    loading.update({ loading: false });
+                });
+
+        }
+
+        loadCharacters();
+
+        window.addEventListener('hashchange', () => {
+            loadCharacters();
+        });
 
         return dom;
     }
