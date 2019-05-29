@@ -1,0 +1,14 @@
+.airbender-item {
+    list-style: none;
+    height: 350px;
+    width: 350px;
+    border: 2px solid rebeccapurple;
+    background: coral;
+    text-align: center;
+    margin: 0 10px 10px 0; 
+    align-content: center;
+    overflow: hidden;
+}
+
+.airbender-item img {
+    height: 300px;
