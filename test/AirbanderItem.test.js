@@ -19,6 +19,10 @@ test('renders template for airbender from data', assert => {
         <li class="airbender-item">
             <h2>46th Earth King</h2>
             <img src="https://vignette.wikia.nocookie.net/avatar/images/5/51/46th_Earth_King.png/revision/latest?cb=20130627160441"> 
+            <div class="links"> 
+                <a id="allies-link" href="#allies=46th Earth King">Allies</a> 
+                <a id="enemies-link" href="#enemies=46th Earth King">Enemies</a>
+            </div> 
         </li>
     `);
 });
