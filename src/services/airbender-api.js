@@ -1,22 +1,33 @@
 const URL = 'https://last-airbender-api.herokuapp.com/api/v1/characters';
 
 const api = {
-    getCharacters() {
-        return fetch(URL)
-            .then(response => response.json());
-    },
-    getAllies(character) {
+
+    getCharacters(query) {
+        console.log('from api call', query);
+
         let url = URL;
 
-        if(search) {
-            const searchParams = new URLSearchParams();
-            searchParams.set('search', search);
-            const query = searchParams.toString();
-            url = `${URL}?allies=${character.name}`;
+        if(query) {
+            url = `${URL}?${query}`;
         }
 
-        return fetch(url);
+
+        return fetch(url)
+            .then(response => response.json());
     },
+    // getAllies(character) {
+    //     let url = URL;
+
+    //     if(character) {
+    //         const searchParams = new URLSearchParams();
+    //         searchParams.set('search', character);
+    //         const query = searchParams.toString();
+    //         url = `${URL}?allies=${character.name}`;
+    //     }
+
+    //     return fetch(url)
+    //         .then(response => response.json());
+    // },
     // getEnemies(character) {
 
     // }

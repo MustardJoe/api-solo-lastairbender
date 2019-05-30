@@ -3,6 +3,7 @@ import Header from './Header.js';
 import AirbenderList from './AirbenderList.js';
 import Loading from './Loading.js';
 import api from '../services/airbender-api.js';
+import Footer from './Footer.js';
 
 class App extends Component {
     render() {
@@ -25,11 +26,12 @@ class App extends Component {
             const params = window.location.hash.slice(1);
 
             const searchParams = new URLSearchParams(params);
-            const search = searchParams.get('search');
+            console.log(searchParams.toString());
+            const query = searchParams.toString();
 
             loading.update({ loading: true }); 
             //uses api method to retreive data and update list
-            api.getCharacters(search)
+            api.getCharacters(query)
                 .then(characters => {
                     airbenderList.update({ characters });
                 })
@@ -47,6 +49,9 @@ class App extends Component {
         window.addEventListener('hashchange', () => {
             loadCharacters();
         });
+
+        const footer = new Footer();
+        main.appendChild(footer.render());
 
         return dom;
     }
